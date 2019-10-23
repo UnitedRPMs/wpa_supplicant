@@ -1,0 +1,78 @@
+From 72ee1e934e98ea87e4de292958817e724114703e Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Fri, 6 Sep 2019 09:46:00 +0200
+Subject: [PATCH] defconfig: Fedora configuration
+
+---
+ wpa_supplicant/defconfig | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/wpa_supplicant/defconfig b/wpa_supplicant/defconfig
+index cdfb197..83c992a 100644
+--- a/wpa_supplicant/defconfig
++++ b/wpa_supplicant/defconfig
+@@ -77,7 +77,7 @@ CONFIG_DRIVER_WIRED=y
+ #CONFIG_DRIVER_MACSEC_QCA=y
+ 
+ # Driver interface for Linux MACsec drivers
+-#CONFIG_DRIVER_MACSEC_LINUX=y
++CONFIG_DRIVER_MACSEC_LINUX=y
+ 
+ # Driver interface for the Broadcom RoboSwitch family
+ #CONFIG_DRIVER_ROBOSWITCH=y
+@@ -146,7 +146,7 @@ CONFIG_EAP_PAX=y
+ CONFIG_EAP_LEAP=y
+ 
+ # EAP-AKA (enable CONFIG_PCSC, if EAP-AKA is used)
+-#CONFIG_EAP_AKA=y
++CONFIG_EAP_AKA=y
+ 
+ # EAP-AKA' (enable CONFIG_PCSC, if EAP-AKA' is used).
+ # This requires CONFIG_EAP_AKA to be enabled, too.
+@@ -183,7 +183,7 @@ CONFIG_EAP_IKEV2=y
+ #CONFIG_EAP_EKE=y
+ 
+ # MACsec
+-#CONFIG_MACSEC=y
++CONFIG_MACSEC=y
+ 
+ # PKCS#12 (PFX) support (used to read private key and certificate file from
+ # a file that usually has extension .p12 or .pfx)
+@@ -342,6 +342,7 @@ CONFIG_IEEE80211W=y
+ # Select which ciphers to use by default with OpenSSL if the user does not
+ # specify them.
+ #CONFIG_TLS_DEFAULT_CIPHERS="DEFAULT:!EXP:!LOW"
++CONFIG_TLS_DEFAULT_CIPHERS="PROFILE=SYSTEM:3DES"
+ 
+ # If CONFIG_TLS=internal is used, additional library and include paths are
+ # needed for LibTomMath. Alternatively, an integrated, minimal version of
+@@ -473,7 +474,7 @@ CONFIG_DEBUG_SYSLOG=y
+ # Should we attempt to use the getrandom(2) call that provides more reliable
+ # yet secure randomness source than /dev/random on Linux 3.17 and newer.
+ # Requires glibc 2.25 to build, falls back to /dev/random if unavailable.
+-#CONFIG_GETRANDOM=y
++CONFIG_GETRANDOM=y
+ 
+ # IEEE 802.11n (High Throughput) support (mainly for AP mode)
+ CONFIG_IEEE80211N=y
+@@ -593,7 +594,7 @@ CONFIG_IBSS_RSN=y
+ #CONFIG_PMKSA_CACHE_EXTERNAL=y
+ 
+ # Mesh Networking (IEEE 802.11s)
+-#CONFIG_MESH=y
++CONFIG_MESH=y
+ 
+ # Background scanning modules
+ # These can be used to request wpa_supplicant to perform background scanning
+@@ -607,7 +608,7 @@ CONFIG_BGSCAN_SIMPLE=y
+ 
+ # Opportunistic Wireless Encryption (OWE)
+ # Experimental implementation of draft-harkins-owe-07.txt
+-#CONFIG_OWE=y
++CONFIG_OWE=y
+ 
+ # Device Provisioning Protocol (DPP)
+ # This requires CONFIG_IEEE80211W=y to be enabled, too. (see
+-- 
+2.21.0
+

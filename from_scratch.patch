@@ -1,0 +1,32 @@
+diff -ruN orig/wpa_supplicant/defconfig new/wpa_supplicant/defconfig
+--- orig/wpa_supplicant/defconfig	2019-08-07 07:25:25.000000000 -0600
++++ new/wpa_supplicant/defconfig	2019-10-23 09:22:51.599166855 -0600
+@@ -46,6 +46,9 @@
+ # Use libnl 3.2 libraries (if this is selected, CONFIG_LIBNL20 is ignored)
+ CONFIG_LIBNL32=y
+ 
++####
++CONFIG_PEERKEY=y
++
+ 
+ # Driver interface for FreeBSD net80211 layer (e.g., Atheros driver)
+ #CONFIG_DRIVER_BSD=y
+@@ -93,6 +96,9 @@
+ # MACsec is included)
+ CONFIG_IEEE8021X_EAPOL=y
+ 
++###
++CONFIG_IPV6=y
++
+ # EAP-MD5
+ CONFIG_EAP_MD5=y
+ 
+@@ -365,6 +371,8 @@
+ #CONFIG_NDIS_EVENTS_INTEGRATED=y
+ #PLATFORMSDKLIB="/opt/Program Files/Microsoft Platform SDK/Lib"
+ 
++CONFIG_CTRL_IFACE_DBUS=y
++
+ # Add support for new DBus control interface
+ # (fi.w1.hostap.wpa_supplicant1)
+ CONFIG_CTRL_IFACE_DBUS_NEW=y
