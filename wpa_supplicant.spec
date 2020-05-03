@@ -5,7 +5,7 @@ Summary: WPA/WPA2/IEEE 802.1X Supplicant
 Name: wpa_supplicant
 Epoch: 1
 Version: 2.9
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: BSD
 Source0: http://w1.fi/releases/%{name}-%{version}.tar.gz
 Source1: wpa_supplicant.conf
@@ -25,6 +25,19 @@ Patch3: wpa_supplicant-quiet-scan-results-message.patch
 Patch4: wpa_supplicant-gui-qt4.patch
 
 Patch5: from_scratch.patch
+
+# fix AP mode PMF disconnection protection bypass            
+Patch6: 0001-AP-Silently-ignore-management-frame-from-unexpected-.patch
+
+# More permissive TLS fallback
+Patch7: tls.patch
+
+# kernel, networkmanager, dhcpcd up to date, produces errors
+Patch8: roam-properties.patch
+
+# Compatibility changes
+Patch9: wpa_supplicant-config.patch
+
 
 URL: http://w1.fi/wpa_supplicant/
 
@@ -185,6 +198,9 @@ chmod -R 0644 wpa_supplicant/examples/*.py
 
 
 %changelog
+
+* Sat May 02 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1:2.9-8
+- Fixes 
 
 * Mon Oct 21 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1:2.9-7
 - Mesh Networking (IEEE 802.11s) isn't enabled by default, drop patch. Broadcom usually used for Dell, Lenovo; fails enabling it.
