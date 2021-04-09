@@ -1,0 +1,30 @@
+From d4348cbbdbdba5d045b5b389ba6ce97b74936f30 Mon Sep 17 00:00:00 2001
+From: Benjamin Berg <bberg@redhat.com>
+Date: Mon, 15 Jun 2020 16:17:43 +0200
+Subject: [PATCH] p2p: Limit P2P_DEVICE name to appropriate ifname size
+
+Otherwise the WPA_IF_P2P_DEVICE cannot be created. As this is not a
+netdev device, it is acceptable if the name is not completely unique. As
+such, simply insert a NUL byte at the appropriate place.
+---
+ wpa_supplicant/p2p_supplicant.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/wpa_supplicant/p2p_supplicant.c b/wpa_supplicant/p2p_supplicant.c
+index e94bffe52..17c25889c 100644
+--- a/wpa_supplicant/p2p_supplicant.c
++++ b/wpa_supplicant/p2p_supplicant.c
+@@ -3929,6 +3929,10 @@ int wpas_p2p_add_p2pdev_interface(struct wpa_supplicant *wpa_s,
+ 			  wpa_s->ifname);
+ 	if (os_snprintf_error(sizeof(ifname), ret))
+ 		return -1;
++	/* Cut length at the maximum size. Note that we don't need to ensure
++	 * collision free names here as the created interface is not a netdev.
++	 */
++	ifname[IFNAMSIZ-1] = '\0';
+ 	force_name[0] = '\0';
+ 	wpa_s->pending_interface_type = WPA_IF_P2P_DEVICE;
+ 	ret = wpa_drv_if_add(wpa_s, WPA_IF_P2P_DEVICE, ifname, NULL, NULL,
+-- 
+2.26.2
+

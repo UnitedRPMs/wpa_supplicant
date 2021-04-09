@@ -5,7 +5,7 @@ Summary: WPA/WPA2/IEEE 802.1X Supplicant
 Name: wpa_supplicant
 Epoch: 1
 Version: 2.9
-Release: 8%{?dist}
+Release: 15%{?dist}
 License: BSD
 Source0: http://w1.fi/releases/%{name}-%{version}.tar.gz
 Source1: wpa_supplicant.conf
@@ -28,6 +28,7 @@ Patch5: from_scratch.patch
 
 # fix AP mode PMF disconnection protection bypass            
 Patch6: 0001-AP-Silently-ignore-management-frame-from-unexpected-.patch
+##############
 
 # More permissive TLS fallback
 Patch7: tls.patch
@@ -37,6 +38,25 @@ Patch8: roam-properties.patch
 
 # Compatibility changes
 Patch9: wpa_supplicant-config.patch
+
+# Fixes from Fedora
+# fix some issues with P2P operation
+Patch10: 0001-P2P-Always-use-global-p2p_long_listen.patch
+Patch11: 0001-D-Bus-Fix-P2P-NULL-dereference-after-interface-remov.patch
+Patch12: 0001-p2p-Limit-P2P_DEVICE-name-to-appropriate-ifname-size.patch
+ 
+#fix for bz1915236
+Patch13: 0001-D-Bus-Allow-changing-an-interface-bridge-via-D-Bus.patch
+ 
+#expose OWE capability in D-Bus
+Patch14: 0001-dbus-Export-OWE-capability-and-OWE-BSS-key_mgmt.patch
+ 
+#fix for CVE-2021-0326
+Patch15: 0001-P2P-Fix-copying-of-secondary-device-types-for-P2P-gr.patch
+ 
+#fix for CVE-2021-27803
+Patch16: 0001-P2P-Fix-a-corner-case-in-peer-addition-based-on-PD-R.patch
+
 
 
 URL: http://w1.fi/wpa_supplicant/
@@ -198,6 +218,9 @@ chmod -R 0644 wpa_supplicant/examples/*.py
 
 
 %changelog
+
+* Fri Apr 09 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1:2.9-15
+- Fixes 
 
 * Sat May 02 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1:2.9-8
 - Fixes 
