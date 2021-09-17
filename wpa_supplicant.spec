@@ -5,7 +5,7 @@ Summary: WPA/WPA2/IEEE 802.1X Supplicant
 Name: wpa_supplicant
 Epoch: 1
 Version: 2.9
-Release: 15%{?dist}
+Release: 16%{?dist}
 License: BSD
 Source0: http://w1.fi/releases/%{name}-%{version}.tar.gz
 Source1: wpa_supplicant.conf
@@ -57,7 +57,8 @@ Patch15: 0001-P2P-Fix-copying-of-secondary-device-types-for-P2P-gr.patch
 #fix for CVE-2021-27803
 Patch16: 0001-P2P-Fix-a-corner-case-in-peer-addition-based-on-PD-R.patch
 
-
+# fix for 802.11r networks, and cards that don't support it
+Patch17: 0001-Check-for-FT-support-when-selecting-FT-suites.patch
 
 URL: http://w1.fi/wpa_supplicant/
 
@@ -218,6 +219,10 @@ chmod -R 0644 wpa_supplicant/examples/*.py
 
 
 %changelog
+
+* Thu Sep 16 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1:2.9-16
+- Fix issues with FT a.k.a. 802.11r when not supported by adapter
+- Rebuilt
 
 * Fri Apr 09 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1:2.9-15
 - Fixes 
